@@ -74,14 +74,11 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-let portOne = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
+
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: `http://${portOne}/auth/google/secrets`,
+    callbackURL: "https://secrets-web-apps.herokuapp.com/auth/google/secrets",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
@@ -95,7 +92,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: `http://${portOne}/auth/facebook/secrets`,
+    callbackURL: "https://secrets-web-apps.herokuapp.com/auth/facebook/secrets",
     profileFields: ['id', 'displayName', 'photos', 'email']
  
   },
